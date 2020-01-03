@@ -26,8 +26,16 @@
   <meta name="codelab" content="your-first-pwa-v3">
   <link rel="stylesheet" type="text/css" href="/styles/inline.css">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+  <meta name="theme-color" content="#2F3BA2" />
+  <meta name="description" content="A sample weather app">
+  <!-- Added manifest.json -->
   <link rel="manifest" href="/manifest.json">
 
+  <!-- IOS Meta tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
   <!-- CODELAB: Add link rel manifest -->
   <!-- CODELAB: Add iOS meta tags and icons -->
   <!-- CODELAB: Add description here -->
@@ -204,7 +212,15 @@
   <script src="/scripts/app.js"></script>
   <!-- CODELAB: Add the install script here -->
   <script>
-    // CODELAB: Register service worker.
+    // Register service worker.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+                .then((reg) => {
+                  console.log('Service worker registered.', reg);
+                });
+      });
+    }
   </script>
 
 </body>
